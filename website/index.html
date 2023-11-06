@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=League Spartan' rel='stylesheet'>
+    <title>Climate Quiz</title>
+    <style>
+        body {
+            font-family: "League Spartan";
+        }
+        .banner {
+            background-color: #98AE96;
+            color: white;
+            text-align: left;
+            padding: 10px;
+            max-width: 100%;
+            font-size: 26px; 
+            line-height: 33px;
+            padding-left: 40px;
+        }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            color: #6D2E46;
+
+        }
+        .quiz-container {
+            max-width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #FDEBF7;
+        }
+        .question {
+            margin-bottom: 10px;
+            font-size: 24px;
+            line-height: 29px;
+            font-weight: 100;
+
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin: 5px 0;
+            font-size: 22px;
+
+        }
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        #submit-button {
+            background-color: #6D2E46; 
+            color: white;
+            border: none; 
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; 
+            font-family: "League Spartan"
+        }
+        
+        #submit-button:hover {
+            background-color: #6D2E46;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Climate Quiz</h1>
+    </div>
+    <div class="header">
+        <h2>Welcome to the Climate Quiz!</h2>
+    </div>
+    <div class="quiz-container">
+        <div class="question">
+            <p>Question 1: What percent of the planet will be covered by water after 200 thousand years?</p>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="a"> ~30% </li>
+                <li><input type="radio" name="q1" value="b"> ~82.5% </li>
+                <li><input type="radio" name="q1" value="c"> ~95.5% </li>
+            </ul>
+        </div>
+        <div class="question">
+            <p>Question 2: What percent of the population will be displaced after 500 thousand years?</p>
+            <ul class="options">
+                <li><input type="radio" name="q2" value="a"> ~90% </li>
+                <li><input type="radio" name="q2" value="b"> ~80% </li>
+                <li><input type="radio" name="q2" value="c"> ~70% </li>
+            </ul>
+        </div>
+        <div class="question">
+            <p>Question 3: What continent looks like it would be the worse affected by climate change?</p>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="a">Africa</li>
+                <li><input type="radio" name="q3" value="b"> Asia </li>
+                <li><input type="radio" name="q3" value="c"> Europe </li>
+            </ul>
+        </div>
+        <div class="question">
+            <p>Question 4: Which of the following cities will be underwater in 50 thousand years: Denver, Kathmandu (capital of Nepal), Miami</p>
+            <ul class="options">
+                <li><input type="radio" name="q4" value="a"> Denver </li>
+                <li><input type="radio" name="q4" value="b"> Kathmandu (captial of Nepal) </li>
+                <li><input type="radio" name="q4" value="c"> Miami </li>
+            </ul>
+        </div>
+        <div class="question">
+            <p>Question 5: Name a reason why the sea level rise issue may be overexaggerated in the animation</p>
+            <ul class="options">
+                <li><input type="radio" name="q5" value="a"> The Earth is actually a lot smaller </li>
+                <li><input type="radio" name="q5" value="b"> We don't have enough water on the planet to cause it to rise that much </li>
+                <li><input type="radio" name="q5" value="c"> The tides move around more so it would make it go higher in some parts </li>
+            </ul>
+        </div>
+
+        <button id="submit-button">Submit Quiz</button>
+        <div class="result" id="quiz-result"></div>
+    </div>
+
+    <script>
+        document.getElementById("submit-button").addEventListener("click", function() {
+        calculateScore(); 
+    });
+
+
+        function calculateScore() {
+            let score = 0;
+
+            const correctAnswers = {
+                q1: "b", 
+                q2: "a", 
+                q3: "c",
+                q4: "c",
+                q5: "b"
+            };
+
+            if (document.querySelector('input[name="q1"]:checked').value === correctAnswers.q1) {
+                score++;
+            }
+            if (document.querySelector('input[name="q2"]:checked').value === correctAnswers.q2) {
+                score++;
+            }
+            if (document.querySelector('input[name="q3"]:checked').value === correctAnswers.q3) {
+                score++;
+            }
+            if (document.querySelector('input[name="q4"]:checked').value === correctAnswers.q4) {
+                score++;
+            }
+            if (document.querySelector('input[name="q5"]:checked').value === correctAnswers.q5) {
+                score++;
+            }
+
+            let message = "";
+            if (score >= 0 && score <= 2) {
+                message = "Make sure to look through the animations again, and then try again! You got this :)";
+            } else if (score >= 3 && score <= 4) {
+                message = "Great job! You did well!";
+            } else if (score === 5) {
+                message = "Wow, you are amazing!";
+            }
+
+            document.getElementById("quiz-result").innerHTML = `Your score: ${score} out of 5<br>${message}`;
+}
+        
+    </script>
+</body>
+</html>
